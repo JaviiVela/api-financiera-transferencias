@@ -25,6 +25,14 @@ async function conectarBaseDeDatos() {
 // ejecutamos la conexion
 conectarBaseDeDatos();
 
+// Importar el middleware
+const validarTokenApp = require("./src/middlewares/auth");
+
+// Aplicarlo a todas las rutas de la API
+app.use("/api", validarTokenApp);
+
+// Tus rutas de cuentas y transacciones van aquí abajo...
+
 // cargamos nuestros archivos de rutas y los guardamos en variables
 let rutasCuentas = require("./src/routes/cuentaRoutes");
 let rutasTransacciones = require("./src/routes/transaccionRoutes");
