@@ -1,6 +1,7 @@
 require("dotenv").config(); // para que lea el archivo .env
 let express = require("express");
 let mongoose = require("mongoose");
+const helmet = require("helmet");
 
 // inicializamos la aplicacion
 let app = express();
@@ -8,6 +9,9 @@ let puerto = 5100;
 
 //para que el req.body no salga como undefined al probar en thunder client
 app.use(express.json());
+
+// Proteger la app con cabeceras de seguridad HTTP
+app.use(helmet());
 
 // creamos una funcion para conectarnos a la base de datos de atlas
 async function conectarBaseDeDatos() {
